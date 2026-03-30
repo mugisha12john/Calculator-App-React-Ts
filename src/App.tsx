@@ -6,7 +6,7 @@ function App() {
     { one: "7", two: "8", three: "9", sign: "*" },
     { one: "4", two: "5", three: "6", sign: "-" },
     { one: "1", two: "2", three: "3", sign: "+" },
-    { one: "0", two: ".", three: "=", sign: "" },
+    { one: "0", two: "", three: ".", sign: "=",merge:true },
   ];
 
   return (
@@ -24,6 +24,7 @@ function App() {
                 two={btn.two}
                 three={btn.three}
                 sign={btn.sign}
+                merge={btn.merge}
               />
             );
           })}
