@@ -13,7 +13,7 @@ function App() {
     <>
       <main className="flex items-center justify-center h-screen">
         <section>
-          <div className="bg-gray-600 max-w-lg text-white font-bold text-4xl text-right p-2">
+          <div className="bg-gray-600 max-w-lg h-20 text-white font-bold text-5xl text-right p-2">
             90
           </div>
           {buttons.map((btn, index) => {
