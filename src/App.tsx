@@ -1,14 +1,32 @@
 import Buttons from "./components/Buttons";
 
 function App() {
+  const buttons = [
+    { one: "AC", two: "+/-", three: "%", sign: "/" },
+    { one: "7", two: "8", three: "9", sign: "*" },
+    { one: "4", two: "5", three: "6", sign: "-" },
+    { one: "1", two: "2", three: "3", sign: "+" },
+    { one: "0", two: ".", three: "=", sign: "" },
+  ];
+
   return (
     <>
       <main className="flex items-center justify-center h-screen">
         <section>
-          <div className="bg-gray-600 w-[26rem] text-white font-bold text-4xl text-right p-2">
+          <div className="bg-gray-600 w-[30rem] text-white font-bold text-4xl text-right p-2">
             90
           </div>
-          <Buttons/>
+          {buttons.map((btn, index) => {
+            return (
+              <Buttons
+              key={index}
+                one={btn.one}
+                two={btn.two}
+                three={btn.three}
+                sign={btn.sign}
+              />
+            );
+          })}
         </section>
       </main>
     </>
