@@ -6,14 +6,14 @@ function App() {
     { one: "7", two: "8", three: "9", sign: "*" },
     { one: "4", two: "5", three: "6", sign: "-" },
     { one: "1", two: "2", three: "3", sign: "+" },
-    { one: "0", two: "", three: ".", sign: "=",merge:true },
+    { one: "0", two: "", three: ".", sign: "=", merge: true },
   ];
 
   return (
     <>
       <main className="flex items-center justify-center h-screen">
         <section>
-          <div className="bg-gray-600 w-[30rem] text-white font-bold text-4xl text-right p-2">
+          <div className="bg-gray-600 max-w-lg text-white font-bold text-4xl text-right p-2">
             90
           </div>
           {buttons.map((btn, index) => {
