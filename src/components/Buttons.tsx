@@ -1,7 +1,4 @@
-import type { Btn } from "./Interface";
-interface ButtonsProps extends Btn {
-  onButtonClick: (value: string) => void;
-}
+import { ACTIONS } from "../App";
 
 export default function Buttons({
   one,
@@ -9,27 +6,40 @@ export default function Buttons({
   three,
   sign,
   merge,
-  onButtonClick,
-}: ButtonsProps) {
+  dispatch,
+}: {
+  one: string;
+  two: string;
+  three: string;
+  sign: string;
+  merge: boolean;
+}) {
   return (
     <>
       <div className="flex">
         {merge ? (
           <>
             <button
-              onClick={() => onButtonClick(one)}
+              onClick={() =>
+                dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: one } })
+              }
               className="p-8 w-60  flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {one}
             </button>
             <button
-              onClick={() => onButtonClick(three)}
+              onClick={() =>
+                dispatch({
+                  type: ACTIONS.ADD_DIGIT,
+                  playload: { digit: three },
+                })
+              }
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {three}
             </button>
             <button
-              onClick={() => onButtonClick(sign)}
+              onClick={() => handleClick(sign)}
               className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}
@@ -38,25 +48,34 @@ export default function Buttons({
         ) : (
           <>
             <button
-              onClick={() => onButtonClick(one)}
+              onClick={() =>
+                dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: one } })
+              }
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {one}
             </button>
             <button
-              onClick={() => onButtonClick(two)}
+              onClick={() =>
+                dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: two } })
+              }
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {two}
             </button>
             <button
-              onClick={() => onButtonClick(three)}
+              onClick={() =>
+                dispatch({
+                  type: ACTIONS.ADD_DIGIT,
+                  playload: { digit: three },
+                })
+              }
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {three}
             </button>
             <button
-              onClick={() => onButtonClick(sign)}
+              onClick={() => handleClick(sign)}
               className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}
