@@ -1,38 +1,65 @@
-export default function Buttons(props: {
-  one: string;
-  two: string;
-  three: string;
-  sign: string;
-  merge?: boolean;
-}) {
+import type { Btn } from "./Interface";
+interface ButtonsProps extends Btn {
+  onButtonClick: (value: string) => void;
+}
+
+export default function Buttons({
+  one,
+  two,
+  three,
+  sign,
+  merge,
+  onButtonClick,
+}: ButtonsProps) {
   return (
     <>
       <div className="flex">
-        {props.merge ? (
+        {merge ? (
           <>
-            <button className="p-8 w-60  flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.one}
+            <button
+              onClick={() => onButtonClick(one)}
+              className="p-8 w-60  flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+            >
+              {one}
             </button>
-            <button className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.three}
+            <button
+              onClick={() => onButtonClick(three)}
+              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+            >
+              {three}
             </button>
-            <button className="p-8 w-30 bg-orange-500 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.sign}
+            <button
+              onClick={() => onButtonClick(sign)}
+              className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
+            >
+              {sign}
             </button>
           </>
         ) : (
           <>
-            <button className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.one}
+            <button
+              onClick={() => onButtonClick(one)}
+              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+            >
+              {one}
             </button>
-            <button className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.two}
+            <button
+              onClick={() => onButtonClick(two)}
+              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+            >
+              {two}
             </button>
-            <button className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.three}
+            <button
+              onClick={() => onButtonClick(three)}
+              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+            >
+              {three}
             </button>
-            <button className="p-8 w-30 bg-orange-500 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 ">
-              {props.sign}
+            <button
+              onClick={() => onButtonClick(sign)}
+              className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
+            >
+              {sign}
             </button>
           </>
         )}
