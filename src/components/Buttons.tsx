@@ -39,7 +39,12 @@ export default function Buttons({
               {three}
             </button>
             <button
-              onClick={() => handleClick(sign)}
+              onClick={() =>
+                dispatch({
+                  type: ACTIONS.CHOOSE_OPERATION,
+                  playload: { operation: sign },
+                })
+              }
               className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}
@@ -75,7 +80,12 @@ export default function Buttons({
               {three}
             </button>
             <button
-              onClick={() => handleClick(sign)}
+              onClick={() =>
+                dispatch({
+                  type: ACTIONS.CHOOSE_OPERATION,
+                  playload: { operation: sign },
+                })
+              }
               className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}

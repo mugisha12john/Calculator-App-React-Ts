@@ -13,6 +13,8 @@ function reducer(state, { type, playload }) {
     case ACTIONS.CHOOSE_OPERATION:
       return "your sign " + playload.operation;
     case ACTIONS.ADD_DIGIT:
+      if (playload.digit === "0" && state.current === "0") return state;
+      if (playload.digit === "." && state.current.includes(".")) return state;
       return { ...state, current: `${state.current || ""}${playload.digit}` };
     case ACTIONS.CLEAR_ALL:
       return 0;
