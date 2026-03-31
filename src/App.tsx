@@ -17,7 +17,7 @@ function reducer(state, { type, playload }) {
       if (playload.digit === "." && state.current.includes(".")) return state;
       return { ...state, current: `${state.current || ""}${playload.digit}` };
     case ACTIONS.CLEAR_ALL:
-      return 0;
+      return {};
     case ACTIONS.POSITIVE_NEGATIVE:
       return state > 0 ? state : -state;
   }
@@ -33,9 +33,6 @@ function App() {
     { one: "1", two: "2", three: "3", sign: "+" },
     { one: "0", two: "", three: ".", sign: "=", merge: true },
   ];
-  const handleClick = (value: string) => {
-    console.log("Clicked:", value);
-  };
 
   return (
     <>
@@ -43,6 +40,9 @@ function App() {
         <section>
           <div className="bg-gray-600 max-w-lg h-20 text-white font-bold text-5xl text-right p-2">
             {previous} {operation} {current}
+            {/* <div>12132</div>
+            <div>+</div>
+            <div>323</div> */}
           </div>
           {buttons.map((btn, index) => {
             return (

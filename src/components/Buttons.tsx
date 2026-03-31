@@ -53,9 +53,17 @@ export default function Buttons({
         ) : (
           <>
             <button
-              onClick={() =>
-                dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: one } })
-              }
+              onClick={() => {
+                return one === "AC"
+                  ? dispatch({
+                      type: ACTIONS.CLEAR_ALL,
+                      playload: { operation: one },
+                    })
+                  : dispatch({
+                      type: ACTIONS.ADD_DIGIT,
+                      playload: { digit: one },
+                    });
+              }}
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {one}
