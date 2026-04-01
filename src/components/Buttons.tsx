@@ -23,7 +23,7 @@ export default function Buttons({
               onClick={() =>
                 dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: one } })
               }
-              className="p-8 w-60  flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+              className="p-6 w-60  flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {one}
             </button>
@@ -34,7 +34,7 @@ export default function Buttons({
                   playload: { digit: three },
                 })
               }
-              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {three}
             </button>
@@ -45,7 +45,7 @@ export default function Buttons({
                   playload: { operation: sign },
                 })
               }
-              className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}
             </button>
@@ -64,7 +64,7 @@ export default function Buttons({
                       playload: { digit: one },
                     });
               }}
-              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {one}
             </button>
@@ -80,7 +80,7 @@ export default function Buttons({
                       playload: { digit: two },
                     });
               }}
-              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {two}
             </button>
@@ -93,10 +93,10 @@ export default function Buttons({
                     })
                   : dispatch({
                       type: ACTIONS.ADD_DIGIT,
-                      playload: { digit: one },
+                      playload: { digit: three },
                     });
               }}
-              className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {three}
             </button>
@@ -107,7 +107,7 @@ export default function Buttons({
                   playload: { operation: sign },
                 })
               }
-              className="p-8 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
+              className="p-6 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}
             </button>
