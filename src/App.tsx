@@ -37,7 +37,7 @@ function reducer(state, { type, playload }) {
       return {};
 
     case ACTIONS.POSITIVE_NEGATIVE:
-      return -{ ...state };
+      return { ...state, current: `${state.current * -1}` };
   }
 }
 function evaluate({
@@ -84,7 +84,7 @@ function App() {
     <>
       <main className="flex items-center justify-center h-screen">
         <section>
-          <div className="bg-gray-600 max-w-lg  text-white text-2xl font-bold  text-right p-2">
+          <div className="bg-gray-600 max-w-lg h-28 text-white text-2xl font-bold  text-right p-2">
             <div className="text-gray-400">{previous}</div>
             <div className="text-gray-300">{operation}</div>
             <div>{current}</div>

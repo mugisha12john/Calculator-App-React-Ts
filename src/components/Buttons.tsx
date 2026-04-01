@@ -12,7 +12,7 @@ export default function Buttons({
   two: string;
   three: string;
   sign: string;
-  merge: boolean;
+  merge?: boolean;
 }) {
   return (
     <>
