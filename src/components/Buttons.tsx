@@ -1,4 +1,6 @@
 import { ACTIONS } from "../App";
+import type { BtnChild } from "./Interface";
+
 
 export default function Buttons({
   one,
@@ -7,13 +9,7 @@ export default function Buttons({
   sign,
   merge,
   dispatch,
-}: {
-  one: string;
-  two: string;
-  three: string;
-  sign: string;
-  merge?: boolean;
-}) {
+}: BtnChild) {
   return (
     <>
       <div className="flex">

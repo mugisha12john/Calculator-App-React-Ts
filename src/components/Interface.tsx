@@ -1,10 +1,18 @@
-export interface Btn{
-    one:string,
-    two:string,
-    three:string,
-    sign:string,
-    merge?:boolean
+import type { Dispatch } from "react";
+
+export type Action =
+  | { type: string; playload: { operation: string } }
+  | { type: string; playload: { digit: string } }
+  | { type: string; playload?: { operation: string } }
+  | { type: string; playload?: { operation: string } };
+
+export interface Btn {
+  one: string;
+  two: string;
+  three: string;
+  sign: string;
+  merge?: boolean;
 }
-export interface ButtonHandle extends Btn{
-    onClickButton: (value:string) => void
+export interface BtnChild extends Btn {
+  dispatch: Dispatch<Action>;
 }
