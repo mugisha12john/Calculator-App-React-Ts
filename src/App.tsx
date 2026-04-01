@@ -62,7 +62,8 @@ function evaluate({
       return `${prev * curr}`;
     case "÷":
       return `${prev / curr}`;
-
+    case "%":
+      return `${prev % curr}`;
     default:
       console.log("evaluate got operation:", operation);
       return "Invalid operation";
@@ -83,7 +84,7 @@ function App() {
     <>
       <main className="flex items-center justify-center h-screen">
         <section>
-          <div className="bg-gray-600 max-w-lg h-20 text-white font-bold  text-right p-2">
+          <div className="bg-gray-600 max-w-lg  text-white text-2xl font-bold  text-right p-2">
             <div className="text-gray-400">{previous}</div>
             <div className="text-gray-300">{operation}</div>
             <div>{current}</div>

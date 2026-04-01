@@ -85,12 +85,17 @@ export default function Buttons({
               {two}
             </button>
             <button
-              onClick={() =>
-                dispatch({
-                  type: ACTIONS.ADD_DIGIT,
-                  playload: { digit: three },
-                })
-              }
+              onClick={() => {
+                return three === "%"
+                  ? dispatch({
+                      type: ACTIONS.CHOOSE_OPERATION,
+                      playload: { operation: three },
+                    })
+                  : dispatch({
+                      type: ACTIONS.ADD_DIGIT,
+                      playload: { digit: one },
+                    });
+              }}
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {three}
