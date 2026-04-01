@@ -7,6 +7,7 @@ export const ACTIONS = {
   POSITIVE_NEGATIVE: "+/-",
   CHOOSE_OPERATION: "operation",
   ADD_DIGIT: "add-digit",
+  EQUALS: "=",
 };
 function reducer(state, { type, playload }) {
   switch (type) {
@@ -20,7 +21,14 @@ function reducer(state, { type, playload }) {
           operation: playload.operation,
         };
       }
-
+      if (state.previous == null) {
+        return {
+          ...state,
+          operation: playload.operation,
+          previous: state.current,
+          current: null,
+        };
+      }
       return {
         ...state,
         previous: evaluate(state),
@@ -37,7 +45,15 @@ function reducer(state, { type, playload }) {
       return {};
 
     case ACTIONS.POSITIVE_NEGATIVE:
-      return { ...state, current: `${state.current * -1}` };
+      return { ...state, current: `${parseFloat(state.current) * -1}` };
+    case ACTIONS.EQUALS:
+      if (state.current == null || state.previous == null) return state;
+      return {
+        ...state,
+        current: evaluate(state),
+        previous: null,
+        operation: null,
+      };
   }
 }
 function evaluate({
@@ -64,6 +80,8 @@ function evaluate({
       return `${prev / curr}`;
     case "%":
       return `${prev % curr}`;
+    case "=":
+      return `${prev}`;
     default:
       console.log("evaluate got operation:", operation);
       return "Invalid operation";

@@ -1,7 +1,6 @@
 import { ACTIONS } from "../App";
 import type { BtnChild } from "./Interface";
 
-
 export default function Buttons({
   one,
   two,
@@ -97,12 +96,17 @@ export default function Buttons({
               {three}
             </button>
             <button
-              onClick={() =>
-                dispatch({
-                  type: ACTIONS.CHOOSE_OPERATION,
-                  playload: { operation: sign },
-                })
-              }
+              onClick={() => {
+                return sign === "="
+                  ? dispatch({
+                      type: ACTIONS.EQUALS,
+                      playload: { operation: sign },
+                    })
+                  : dispatch({
+                      type: ACTIONS.CHOOSE_OPERATION,
+                      playload: { operation: sign },
+                    });
+              }}
               className="p-6 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}

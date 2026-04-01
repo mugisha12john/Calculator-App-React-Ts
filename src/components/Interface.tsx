@@ -16,3 +16,9 @@ export interface Btn {
 export interface BtnChild extends Btn {
   dispatch: Dispatch<Action>;
 }
+export interface ACTIONS {
+  CLEAR_ALL: string;
+  POSITIVE_NEGATIVE: string;
+  CHOOSE_OPERATION: string;
+  ADD_DIGIT: string;
+}
