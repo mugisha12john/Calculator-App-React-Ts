@@ -69,9 +69,17 @@ export default function Buttons({
               {one}
             </button>
             <button
-              onClick={() =>
-                dispatch({ type: ACTIONS.ADD_DIGIT, playload: { digit: two } })
-              }
+              onClick={() => {
+                return two === "+/-"
+                  ? dispatch({
+                      type: ACTIONS.POSITIVE_NEGATIVE,
+                      playload: { operation: two },
+                    })
+                  : dispatch({
+                      type: ACTIONS.ADD_DIGIT,
+                      playload: { digit: two },
+                    });
+              }}
               className="p-8 w-30 flex justify-center items-center font-semibold text-4xl border-2 border-gray-400 "
             >
               {two}

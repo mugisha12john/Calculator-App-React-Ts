@@ -11,20 +11,65 @@ export const ACTIONS = {
 function reducer(state, { type, playload }) {
   switch (type) {
     case ACTIONS.CHOOSE_OPERATION:
-      return "your sign " + playload.operation;
+      if (state.current == null && state.previous == null) {
+        return state;
+      }
+      if (state.current == null) {
+        return {
+          ...state,
+          operation: playload.operation,
+        };
+      }
+
+      return {
+        ...state,
+        previous: evaluate(state),
+        operation: playload.operation,
+        current: null,
+      };
     case ACTIONS.ADD_DIGIT:
       if (playload.digit === "0" && state.current === "0") return state;
+      if (playload.digit === "." && state.current == undefined)
+        return { ...state, current: "0." };
       if (playload.digit === "." && state.current.includes(".")) return state;
       return { ...state, current: `${state.current || ""}${playload.digit}` };
     case ACTIONS.CLEAR_ALL:
       return {};
+
     case ACTIONS.POSITIVE_NEGATIVE:
-      return state > 0 ? state : -state;
+      return -{ ...state };
+  }
+}
+function evaluate({
+  current,
+  previous,
+  operation,
+}: {
+  current: string;
+  previous: string;
+  operation: string;
+}) {
+  console.log("operation received:", operation, typeof operation);
+  const prev = parseFloat(previous);
+  const curr = parseFloat(current);
+  if (isNaN(prev) || isNaN(curr)) return current ?? previous ?? "";
+  switch (operation) {
+    case "+":
+      return `${prev + curr}`;
+    case "-":
+      return `${prev - curr}`;
+    case "*":
+      return `${prev * curr}`;
+    case "÷":
+      return `${prev / curr}`;
+
+    default:
+      console.log("evaluate got operation:", operation);
+      return "Invalid operation";
   }
 }
 
 function App() {
-  // const [result, setResult] = useState<number[]>([]);
   const [{ current, previous, operation }, dispatch] = useReducer(reducer, {});
   const buttons: Btn[] = [
     { one: "AC", two: "+/-", three: "%", sign: "÷" },
