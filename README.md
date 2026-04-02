@@ -61,9 +61,7 @@ src/
 		Buttons.tsx
 		Interface.ts
 ```
-
 ## Screenshot
-
 The calculator UI is shown below:
 
 ![Calculator UI](./image.png)
