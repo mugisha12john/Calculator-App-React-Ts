@@ -1,79 +1,55 @@
 import { useReducer } from "react";
 import Buttons from "./components/Buttons";
-import type { Action, ACTIONS, Btn } from "./components/Interface";
+import type { Action, Btn, CalculatorData } from "./components/Interface";
+import { ACTIONS } from "./components/Interface";
 
-export const ACTIONS = {
-  CLEAR_ALL: "AC",
-  POSITIVE_NEGATIVE: "+/-",
-  CHOOSE_OPERATION: "operation",
-  ADD_DIGIT: "add-digit",
-  EQUALS: "=",
-};
-function reducer(
-  state,
-  {
-    type,
-    playload,
-  }: { type: string; playload: { operation?: string; digit?: string } },
-) {
-  switch (type) {
-    case ACTIONS.CHOOSE_OPERATION:
-      if (state.current == null && state.previous == null) {
-        return state;
-      }
-      if (state.current == null) {
+function reducer(state: CalculatorData, action: Action): CalculatorData {
+  switch (action.type) {
+    case ACTIONS.CHOOSE_OPERATION: {
+      const { operation } = action.playload;
+      if (state.current == null && state.previous == null) return state;
+      if (state.current == null) return { ...state, operation };
+      if (state.previous == null)
         return {
           ...state,
-          operation: playload.operation,
-        };
-      }
-      if (state.previous == null) {
-        return {
-          ...state,
-          operation: playload.operation,
+          operation,
           previous: state.current,
-          current: null,
+          current: undefined,
         };
-      }
       return {
         ...state,
         previous: evaluate(state),
-        operation: playload.operation,
-        current: null,
+        operation,
+        current: undefined,
       };
-    case ACTIONS.ADD_DIGIT:
-      if (playload.digit === "0" && state.current === "0") return state;
-      if (playload.digit === "." && state.current == undefined)
+    }
+    case ACTIONS.ADD_DIGIT: {
+      const { digit } = action.playload;
+      if (digit === "0" && state.current === "0") return state;
+      if (digit === "." && state.current == null)
         return { ...state, current: "0." };
-      if (playload.digit === "." && state.current.includes(".")) return state;
-      return { ...state, current: `${state.current || ""}${playload.digit}` };
+      if (digit === "." && state.current?.includes(".")) return state;
+      return { ...state, current: `${state.current ?? ""}${digit}` };
+    }
     case ACTIONS.CLEAR_ALL:
       return {};
-
     case ACTIONS.POSITIVE_NEGATIVE:
-      return { ...state, current: `${parseFloat(state.current) * -1}` };
+      return { ...state, current: `${parseFloat(state.current ?? "0") * -1}` };
     case ACTIONS.EQUALS:
       if (state.current == null || state.previous == null) return state;
       return {
         ...state,
         current: evaluate(state),
-        previous: null,
-        operation: null,
+        previous: undefined,
+        operation: undefined,
       };
+    default:
+      return state;
   }
 }
-function evaluate({
-  current,
-  previous,
-  operation,
-}: {
-  current: string;
-  previous: string;
-  operation: string;
-}) {
-  console.log("operation received:", operation, typeof operation);
-  const prev = parseFloat(previous);
-  const curr = parseFloat(current);
+function evaluate({ current, previous, operation }: CalculatorData): string {
+  const prev = parseFloat(previous ?? "");
+  const curr = parseFloat(current ?? "");
   if (isNaN(prev) || isNaN(curr)) return current ?? previous ?? "";
   switch (operation) {
     case "+":
@@ -89,13 +65,15 @@ function evaluate({
     case "=":
       return `${prev}`;
     default:
-      console.log("evaluate got operation:", operation);
       return "Invalid operation";
   }
 }
 
 function App() {
-  const [{ current, previous, operation }, dispatch] = useReducer(reducer, {});
+  const [{ current, previous, operation }, dispatch] = useReducer(
+    reducer,
+    {} as CalculatorData,
+  );
   const buttons: Btn[] = [
     { one: "AC", two: "+/-", three: "%", sign: "÷" },
     { one: "7", two: "8", three: "9", sign: "*" },

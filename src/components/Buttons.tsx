@@ -1,4 +1,4 @@
-import { ACTIONS } from "../App";
+import { ACTIONS } from "./Interface";
 import type { BtnChild } from "./Interface";
 
 export default function Buttons({
@@ -38,7 +38,6 @@ export default function Buttons({
                 return sign === "="
                   ? dispatch({
                       type: ACTIONS.EQUALS,
-                      playload: { operation: sign },
                     })
                   : dispatch({
                       type: ACTIONS.ADD_DIGIT,
@@ -57,7 +56,6 @@ export default function Buttons({
                 return one === "AC"
                   ? dispatch({
                       type: ACTIONS.CLEAR_ALL,
-                      playload: { operation: one },
                     })
                   : dispatch({
                       type: ACTIONS.ADD_DIGIT,
@@ -73,7 +71,6 @@ export default function Buttons({
                 return two === "+/-"
                   ? dispatch({
                       type: ACTIONS.POSITIVE_NEGATIVE,
-                      playload: { operation: two },
                     })
                   : dispatch({
                       type: ACTIONS.ADD_DIGIT,
@@ -105,7 +102,6 @@ export default function Buttons({
                 return sign === "="
                   ? dispatch({
                       type: ACTIONS.EQUALS,
-                      playload: { operation: sign },
                     })
                   : dispatch({
                       type: ACTIONS.CHOOSE_OPERATION,
