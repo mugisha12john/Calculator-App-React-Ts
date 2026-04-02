@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import Buttons from "./components/Buttons";
-import type { Btn } from "./components/Interface";
+import type { Action, ACTIONS, Btn } from "./components/Interface";
 
 export const ACTIONS = {
   CLEAR_ALL: "AC",
@@ -9,7 +9,13 @@ export const ACTIONS = {
   ADD_DIGIT: "add-digit",
   EQUALS: "=",
 };
-function reducer(state, { type, playload }) {
+function reducer(
+  state,
+  {
+    type,
+    playload,
+  }: { type: string; playload: { operation?: string; digit?: string } },
+) {
   switch (type) {
     case ACTIONS.CHOOSE_OPERATION:
       if (state.current == null && state.previous == null) {

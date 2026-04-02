@@ -34,12 +34,17 @@ export default function Buttons({
               {three}
             </button>
             <button
-              onClick={() =>
-                dispatch({
-                  type: ACTIONS.CHOOSE_OPERATION,
-                  playload: { operation: sign },
-                })
-              }
+              onClick={() => {
+                return sign === "="
+                  ? dispatch({
+                      type: ACTIONS.EQUALS,
+                      playload: { operation: sign },
+                    })
+                  : dispatch({
+                      type: ACTIONS.ADD_DIGIT,
+                      playload: { digit: sign },
+                    });
+              }}
               className="p-6 w-30 bg-orange-400 flex justify-center items-center font-bold text-4xl border-2 border-gray-400 "
             >
               {sign}

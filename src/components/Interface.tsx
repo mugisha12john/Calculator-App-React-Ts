@@ -1,8 +1,8 @@
 import type { Dispatch } from "react";
 
-export type Action =
-  | { type: string; playload: { operation: string } }
-  | { type: string; playload: { digit: string } }
+export type Actions =
+  | { type: string; playload?: { operation: string } }
+  | { type: string; playload?: { digit: string } }
   | { type: string; playload?: { operation: string } }
   | { type: string; playload?: { operation: string } };
 
@@ -14,11 +14,11 @@ export interface Btn {
   merge?: boolean;
 }
 export interface BtnChild extends Btn {
-  dispatch: Dispatch<Action>;
+  dispatch: Dispatch<Actions>;
 }
-export interface ACTIONS {
-  CLEAR_ALL: string;
-  POSITIVE_NEGATIVE: string;
-  CHOOSE_OPERATION: string;
-  ADD_DIGIT: string;
-}
+export type Action =
+  | { type: "operation"; playload: { operation: string } }
+  | { type: "add-digit"; playload: { digit: string } }
+  | { type: "AC"; playload?: never }
+  | { type: "+/-"; playload?: never }
+  | { type: "="; playload?: never };
