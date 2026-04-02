@@ -13,7 +13,6 @@ This is a simple calculator built with React, TypeScript, Vite, and Tailwind CSS
 - Positive/negative toggle
 - Decimal input support
 - Clear all and chained calculations
-- Responsive calculator layout
 
 ## Tech Stack
 
@@ -61,7 +60,3 @@ src/
 		Buttons.tsx
 		Interface.ts
 ```
-## Screenshot
-The calculator UI is shown below:
-
-![Calculator UI](./image.png)
